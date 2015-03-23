@@ -1,4 +1,5 @@
 FROM golang:1.4.2
+MAINTAINER Andrew McDermott <aim@frobware.com>
 RUN mkdir /go-tools /target
 WORKDIR /go-tools
 ADD build-tools.bash installer /go-tools/
