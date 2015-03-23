@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if mountpoint -q /target; then
+    cp -a /go-tools/bin/* /target
+else
+    echo "error: /target is not a mountpoint."
+    echo "error: re-run this container with -v /usr/local/bin:/target"
+fi
