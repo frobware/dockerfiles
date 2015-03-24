@@ -1,4 +1,5 @@
 FROM frobware/effing-package-manager
+MAINTAINER Andrew McDermott <aim@frobware.com>
 RUN apt-get update && apt-get -y install git gcc mercurial pkg-config libpcre3 libpcre3-dev
 RUN mkdir /work /target
 WORKDIR /work
