@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if mountpoint -q /target; then
+    cp /work/*.deb /work/*.tar /target
+else
+    echo "/target is not a mountpoint."
+    echo "- re-run this container with -v /tmp:/target"
+fi
