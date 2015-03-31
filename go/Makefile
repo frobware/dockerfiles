@@ -1,8 +1,7 @@
+NAME = $(shell basename $$PWD)
+
 build:
-	docker build -t frobware/go .
+	docker build --rm=false -t frobware/$(NAME) .
 
 run:
-	docker run -ti -v /tmp:/target frobware/go
-
-enter:
-	docker run -ti -v /tmp:/target frobware/go /bin/bash
+	docker run --rm=false -v /tmp:/target frobware/$(NAME)
