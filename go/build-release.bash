@@ -35,3 +35,7 @@ if [ -d $TOP_DIR/golang-crosscompile ]; then
     source $TOP_DIR/golang-crosscompile/crosscompile.bash
     go-crosscompile-build-all
 fi
+
+export GOPATH=$(mktemp -d)
+go install -v golang.org/x/tools/cmd/godoc/...
+rm -rf $GOPATH
