@@ -10,25 +10,22 @@ source $TOP_DIR/meta.sh
 cat <<EOF > $TOP_DIR/after-install.bash
 #!/bin/bash
 EOF
-pushd $TOP_DIR/go/bin
-for i in *; do
-    echo "update-alternatives --install /usr/local/bin/$i $i $GOROOT_FINAL/bin/$i 100" >> $TOP_DIR/after-install.bash
+for i in $TOP_DIR/go/bin/*; do
+    fname=$(basename $i)
+    echo "update-alternatives --install /usr/local/bin/$fname $fname $GOROOT_FINAL/bin/$fname 100" >> $TOP_DIR/after-install.bash
 done
-popd
 
 cat <<EOF > $TOP_DIR/after-remove.bash
 #!/bin/bash
 EOF
-pushd $TOP_DIR/go/bin
-for i in *; do
-    echo "update-alternatives --remove $i /usr/local/bin/$i" >> $TOP_DIR/after-remove.bash
+for i in $TOP_DIR/gi/bin/*; do
+    echo "update-alternatives --remove $fname /usr/local/bin/$fname" >> $TOP_DIR/after-remove.bash
 done
-popd
 
 chmod 755 $TOP_DIR/after-install.bash
 chmod 755 $TOP_DIR/after-remove.bash
 
-for i in tar deb; do
+for i in deb; do
     fpm -f --prefix=$GOROOT_FINAL \
 	-s dir \
 	-t $i \
@@ -38,5 +35,16 @@ for i in tar deb; do
 	--description "Go ${GO_VERSION}" \
 	--after-install $TOP_DIR/after-install.bash \
 	--after-remove $TOP_DIR/after-remove.bash \
-	--iteration $PKG_ITERATION bin src pkg doc
+	--iteration $PKG_ITERATION bin src pkg doc test
+done
+
+for i in tar; do
+    fpm -f --prefix=$GO_VERSION \
+	-s dir \
+	-t $i \
+	-C go \
+	--name "${GO_VERSION}" \
+	--version 1.0.0 \
+	--description "Go ${GO_VERSION}" \
+	--iteration $PKG_ITERATION bin src pkg doc test
 done
