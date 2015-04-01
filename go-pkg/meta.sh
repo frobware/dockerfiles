@@ -1,5 +1,11 @@
-: ${PKG_ITERATION:=2}
-: ${GO_VERSION?}
-: ${GOROOT_FINAL:=/usr/local/${GO_VERSION}}
+set -a
 
-unset GOPATH
+: ${PKG_ITERATION:=4}
+: ${GO_VERSION:=go1.4.2}
+: ${INSTALL_PREFIX:=/usr/local}
+: ${GOROOT_FINAL:=${INSTALL_PREFIX}/${GO_VERSION}}
+: ${GOPATH:=/work}
+
+PATH=$GOROOT_FINAL/bin:$PATH
+
+set +a
