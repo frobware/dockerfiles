@@ -10,6 +10,6 @@ ENV GOPATH=/work/gopath
 RUN /work/with-env go get -v golang.org/x/tools/cmd/godoc
 RUN /work/with-env go get -v github.com/nsf/gocode
 RUN /work/with-env 'cp /work/gopath/bin/* ${INSTALL_PREFIX}/${GO_VERSION}/bin'
-ADD build-package.bash /work/
+ADD build-package.bash alternatives-priority /work/
 RUN /work/with-env /work/build-package.bash
 CMD /work/installer /target
