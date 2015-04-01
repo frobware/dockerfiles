@@ -1,5 +1,6 @@
 #!/bin/bash
 
 TOP_DIR=$(cd $(dirname "$0") && pwd)
-source $TOP_DIR/meta.sh
+[ -f $TOP_DIR/build-meta.sh ] && source $TOP_DIR/build-meta.sh
+[ -f $TOP_DIR/package-meta.sh ] && source $TOP_DIR/package-meta.sh
 eval "$@"

@@ -7,7 +7,7 @@ set -o nounset
 trap "exit 1;" SIGINT
 
 TOP_DIR=$(cd $(dirname "$0") && pwd)
-source $TOP_DIR/meta.sh
+source $TOP_DIR/build-meta.sh
 
 if [ ! -d go ]; then
     git clone --depth=1 https://github.com/golang/go.git -b ${GO_VERSION}

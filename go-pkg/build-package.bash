@@ -5,7 +5,8 @@ set -o errexit
 set -o nounset
 
 TOP_DIR=$(cd $(dirname "$0") && pwd)
-source $TOP_DIR/meta.sh
+source $TOP_DIR/build-meta.sh
+source $TOP_DIR/package-meta.sh
 
 priority=$(${TOP_DIR}/alternatives-priority $GO_VERSION)
 
