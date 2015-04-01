@@ -10,6 +10,8 @@ trap "exit 1;" SIGINT
 
 : ${GET:=get}
 
+go env
+
 go ${GET} golang.org/x/tools/cmd/...
 go ${GET} code.google.com/p/rog-go/exp/cmd/godef
 go ${GET} github.com/dougm/goflymake

@@ -5,5 +5,5 @@ set -a
 : ${GOPATH:=/work}
 
 export PATH=$INSTALL_PREFIX/$GO_VERSION/bin:$PATH
-type -p go && go version
+
 set +a
