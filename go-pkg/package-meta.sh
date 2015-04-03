@@ -1,3 +1,1 @@
-set -a
-: ${PKG_ITERATION:=10}
-set +a
+export PKG_ITERATION=11

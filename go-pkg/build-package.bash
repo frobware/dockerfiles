@@ -53,3 +53,6 @@ fpm -f --prefix=$GO_VERSION \
     --version 1.0.0 \
     --description "Go ${GO_VERSION}" \
     --iteration $PKG_ITERATION bin src pkg doc test
+
+mv *.tar /
+mv *.deb /

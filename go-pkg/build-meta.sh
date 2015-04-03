@@ -4,6 +4,4 @@ set -a
 : ${INSTALL_PREFIX:=/usr/local}
 : ${GOPATH:=/work}
 
-export PATH=$INSTALL_PREFIX/$GO_VERSION/bin:$PATH
-
 set +a

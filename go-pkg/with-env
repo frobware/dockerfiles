@@ -3,4 +3,7 @@
 TOP_DIR=$(cd $(dirname "$0") && pwd)
 [ -f $TOP_DIR/build-meta.sh ] && source $TOP_DIR/build-meta.sh
 [ -f $TOP_DIR/package-meta.sh ] && source $TOP_DIR/package-meta.sh
+
+PATH=$INSTALL_PREFIX/$GO_VERSION/bin:$PATH
+
 eval "$@"
