@@ -42,7 +42,7 @@ for i in deb; do
 	--description "Go ${GO_VERSION}" \
 	--after-install $TOP_DIR/after-install.bash \
 	--after-remove $TOP_DIR/after-remove.bash \
-	--iteration $PKG_ITERATION bin src pkg doc test
+	--iteration $PKG_ITERATION bin src pkg doc test misc
 done
 
 fpm -f --prefix=$GO_VERSION \
@@ -52,7 +52,7 @@ fpm -f --prefix=$GO_VERSION \
     --name "${GO_VERSION}" \
     --version 1.0.0 \
     --description "Go ${GO_VERSION}" \
-    --iteration $PKG_ITERATION bin src pkg doc test
+    --iteration $PKG_ITERATION bin src pkg doc test misc
 
 mv *.tar /
 mv *.deb /
