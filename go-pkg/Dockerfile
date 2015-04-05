@@ -21,7 +21,8 @@ RUN /work/with-env go get -v golang.org/x/tools/cmd/godoc
 RUN /work/with-env go get -v golang.org/x/tools/cmd/oracle
 RUN /work/with-env go get -v golang.org/x/tools/cmd/vet
 RUN /work/with-env 'ls /work/gopath/bin'
-RUN /work/with-env 'cp /work/gopath/bin/* ${INSTALL_PREFIX}/${GO_VERSION}/bin'
+RUN /work/with-env 'cp -v /work/gopath/bin/* ${INSTALL_PREFIX}/${GO_VERSION}/bin'
+RUN /work/with-env 'cp -v /work/gopath/src/golang.org/x/tools/cmd/oracle/oracle.el ${INSTALL_PREFIX}/${GO_VERSION}/misc'
 ADD build-package.bash package-meta.sh alternatives-priority /work/
 RUN /work/with-env /work/build-package.bash
 CMD /work/installer /target
