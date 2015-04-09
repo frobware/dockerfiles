@@ -8,7 +8,7 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-const InstallWith string = "Install with "
+const installWithStr string = "Install with "
 
 // Scrape for tools.
 
@@ -21,8 +21,8 @@ func main() {
 
 	doc.Find(".tool-install").Each(func(i int, s *goquery.Selection) {
 		txt := s.Text()
-		if strings.HasPrefix(txt, InstallWith) {
-			fmt.Println(strings.Replace(txt, InstallWith, "", -1))
+		if strings.HasPrefix(txt, installWithStr) {
+			fmt.Println(strings.Replace(txt, installWithStr, "", -1))
 		}
 	})
 }
