@@ -2,7 +2,7 @@ FROM debian:jessie
 MAINTAINER Andrew McDermott <aim@frobware.com>
 RUN mkdir /gopath
 ENV GOPATH /gopath
-RUN apt-get update && apt-get install -y git mercurial
+RUN apt-get update && apt-get install -y git mercurial bzr
 ADD *.deb /gopath/
 RUN /bin/bash -c 'UPDATE_ALTERNATIVES=1 dpkg -i /gopath/*.deb'
 RUN go env
@@ -13,6 +13,9 @@ RUN go get -u github.com/dougm/goflymake
 RUN go get -u github.com/jstemmer/gotags
 RUN go get -u github.com/inconshreveable/gonative
 RUN go get -u github.com/opennota/check/cmd/...
+
+RUN go get -u github.com/tools/godep/...
+RUN go get -u launchpad.net/godeps/...
 
 RUN go get github.com/golang/lint/golint
 RUN go get github.com/kisielk/errcheck
