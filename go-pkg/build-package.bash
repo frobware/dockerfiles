@@ -45,6 +45,22 @@ for i in deb; do
 	--iteration $PKG_ITERATION bin src pkg doc test misc
 done
 
+make_wrapper() {
+    local path=$1
+    mv $path $path.real
+    cat > $path <<EOF
+#!/bin/bash -eu
+progname=\$(basename \$0)
+scriptpath=\$(cd \$(dirname \$0); pwd -P)
+exec env GOROOT=\$scriptpath/.. \$scriptpath/\${progname}.real "\$@"
+EOF
+    chmod 755 $path
+}
+
+for i in ${INSTALL_PREFIX}/${GO_VERSION}/bin/*; do
+    make_wrapper $i
+done
+
 fpm -f --prefix=$GO_VERSION \
     -s dir \
     -t tar \
