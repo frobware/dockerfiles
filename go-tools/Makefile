@@ -5,3 +5,6 @@ build:
 
 run:
 	docker run -it -v /usr/local/bin:/target frobware/$(NAME)
+
+clean:
+	docker rmi frobware/$(NAME)
