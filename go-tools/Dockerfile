@@ -4,7 +4,7 @@ RUN mkdir /gopath
 ENV GOPATH /gopath
 RUN apt-get update && apt-get install -y git mercurial
 ADD *.deb /gopath/
-RUN /bin/bash -c 'dpkg -i /gopath/*.deb'
+RUN /bin/bash -c 'UPDATE_ALTERNATIVES=1 dpkg -i /gopath/*.deb'
 RUN go env
 
 RUN go get -u golang.org/x/tools/cmd/...
@@ -13,7 +13,6 @@ RUN go get -u github.com/dougm/goflymake
 RUN go get -u github.com/jstemmer/gotags
 RUN go get -u github.com/inconshreveable/gonative
 RUN go get -u github.com/opennota/check/cmd/...
-#RUN go get -u github.com/npat-efault/godef
 
 RUN go get github.com/golang/lint/golint
 RUN go get github.com/kisielk/errcheck
@@ -30,8 +29,8 @@ RUN go get golang.org/x/tools/cmd/oracle
 RUN go get golang.org/x/tools/cmd/gorename
 RUN go get github.com/kisielk/godepgraph
 
-# These are already in go1.4.2_1.0.0-11_amd64.deb
-# as they expect to be in GOROOT/bin.
+# These are already in my go .deb but they are expected to be in
+# GOROOT/bin so remove the duplication.
 RUN rm -f /gopath/bin/oracle
 RUN rm -f /gopath/bin/godoc
 RUN rm -f /gopath/bin/gofmt

@@ -10,17 +10,20 @@ source $TOP_DIR/package-meta.sh
 
 priority=$(${TOP_DIR}/alternatives-priority $GO_VERSION)
 
-cat <<EOF > $TOP_DIR/after-install.bash
+cat <<\EOF > $TOP_DIR/after-install.bash
 #!/bin/bash
+[ ${UPDATE_ALTERNATIVES:=0} = 0 ] && exit 0
 EOF
 for i in $INSTALL_PREFIX/$GO_VERSION/bin/*; do
     fname=$(basename $i)
     echo "update-alternatives --install /usr/bin/$fname $fname ${INSTALL_PREFIX}/${GO_VERSION}/bin/$fname $priority" >> $TOP_DIR/after-install.bash
 done
 
-cat <<EOF > $TOP_DIR/after-remove.bash
+cat <<\EOF > $TOP_DIR/after-remove.bash
 #!/bin/bash
+[ ${UPDATE_ALTERNATIVES:=0} = 0 ] && exit 0
 EOF
+
 for i in $INSTALL_PREFIX/$GO_VERSION/bin/*; do
     fname=$(basename $i)
     echo "update-alternatives --remove $fname /usr/bin/$fname" >> $TOP_DIR/after-remove.bash
