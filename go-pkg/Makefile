@@ -7,4 +7,4 @@ run:
 	docker run --rm=false -v /tmp:/target frobware/$(NAME)
 
 clean:
-	docker rmi frobware/$(NAME)
+	-docker rmi frobware/$(NAME)
