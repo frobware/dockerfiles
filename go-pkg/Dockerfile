@@ -17,8 +17,8 @@ ENV GOPATH=/work/gopath
 RUN /work/with-env go version
 RUN /work/with-env go get -v github.com/nsf/gocode
 RUN /work/with-env go get -v golang.org/x/tools/cmd/cover
-RUN /work/with-env go get -v golang.org/x/tools/cmd/godoc
-RUN /work/with-env go get -v golang.org/x/tools/cmd/oracle
+#RUN /work/with-env go get -v golang.org/x/tools/cmd/godoc
+# RUN /work/with-env go get -v golang.org/x/tools/cmd/oracle
 RUN /work/with-env go get -v golang.org/x/tools/cmd/vet
 RUN /work/with-env 'ls /work/gopath/bin'
 RUN /work/with-env 'cp -v /work/gopath/bin/* ${INSTALL_PREFIX}/${GO_VERSION}/bin'
