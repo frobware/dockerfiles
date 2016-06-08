@@ -11,5 +11,11 @@ for c in version:
         break
     i = i + 1
 
-major, minor, micro = version[i:].split(".")
+micro = 0
+
+try:
+    major, minor, micro = version[i:].split(".")
+except ValueError:
+    major, minor = version[i:].split(".")
+
 print int(major) * 100 + int(minor) * 10 + int(micro)

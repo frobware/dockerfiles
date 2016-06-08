@@ -1,16 +1,18 @@
 FROM frobware/effing-package-manager
 MAINTAINER Andrew McDermott <aim@frobware.com>
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
-    	    git \
+	    git \
 	    gcc \
 	    mercurial \
 	    pkg-config \
 	    libpcre3 \
 	    libpcre3-dev \
-	    rpm
+	    rpm wget
 RUN mkdir /work /target
 WORKDIR /usr/local
 ADD installer with-env build-meta.sh /work/
+RUN ls $HOME
+RUN wget -q -O go1.4.2.tar.gz https://storage.googleapis.com/golang/go1.4.2.linux-amd64.tar.gz; tar -C $HOME -xzf go1.4.2.tar.gz; mv $HOME/go $HOME/go1.4
 RUN /work/with-env 'git clone --depth=1 https://github.com/golang/go.git -b ${GO_VERSION} ${GO_VERSION}'
 RUN /work/with-env '(cd ${GO_VERSION}/src && ./make.bash)'
 ENV GOPATH=/work/gopath
@@ -19,7 +21,7 @@ RUN /work/with-env go get -v github.com/nsf/gocode
 RUN /work/with-env go get -v golang.org/x/tools/cmd/cover
 RUN /work/with-env go get -v golang.org/x/tools/cmd/godoc
 RUN /work/with-env go get -v golang.org/x/tools/cmd/oracle
-RUN /work/with-env go get -v golang.org/x/tools/cmd/vet
+# RUN /work/with-env go get -v golang.org/x/tools/cmd/vet
 RUN /work/with-env 'ls /work/gopath/bin'
 RUN /work/with-env 'cp -v /work/gopath/bin/* ${INSTALL_PREFIX}/${GO_VERSION}/bin'
 RUN /work/with-env 'cp -v /work/gopath/src/golang.org/x/tools/cmd/oracle/oracle.el ${INSTALL_PREFIX}/${GO_VERSION}/misc'
