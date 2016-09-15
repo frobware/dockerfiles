@@ -13,7 +13,7 @@ trap "exit 1;" SIGINT
 go env
 
 go ${GET} golang.org/x/tools/cmd/...
-go ${GET} code.google.com/p/rog-go/exp/cmd/godef
+go ${GEt} github.com/rogpeppe/godef/...
 go ${GET} github.com/dougm/goflymake
 go ${GET} github.com/jstemmer/gotags
 go ${GET} github.com/kisielk/errcheck

@@ -27,14 +27,14 @@ RUN go get golang.org/x/tools/cmd/goimports
 RUN go get sourcegraph.com/sqs/goreturns
 RUN go get github.com/rogpeppe/godef
 RUN go get github.com/nsf/gocode
-RUN go get golang.org/x/tools/cmd/oracle
+RUN go get golang.org/x/tools/cmd/guru
 RUN go get golang.org/x/tools/cmd/gorename
 RUN go get github.com/kisielk/godepgraph
 RUN go get github.com/fzipp/pythia
 
 # These are already in my go .deb but they are expected to be in
 # GOROOT/bin so remove the duplication.
-RUN rm -f /gopath/bin/oracle
+RUN rm -f /gopath/bin/guru
 RUN rm -f /gopath/bin/godoc
 RUN rm -f /gopath/bin/gofmt
 
