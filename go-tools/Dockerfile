@@ -11,7 +11,6 @@ RUN go get -u golang.org/x/tools/cmd/...
 
 RUN go get -u github.com/dougm/goflymake
 RUN go get -u github.com/jstemmer/gotags
-#RUN go get -u github.com/inconshreveable/gonative
 RUN go get -u github.com/opennota/check/cmd/...
 
 RUN go get -u github.com/tools/godep/...
@@ -34,8 +33,6 @@ RUN go get github.com/fzipp/pythia
 
 # These are already in my go .deb but they are expected to be in
 # GOROOT/bin so remove the duplication.
-RUN rm -f /gopath/bin/guru
-RUN rm -f /gopath/bin/godoc
 RUN rm -f /gopath/bin/gofmt
 
 ADD installer /gopath/
