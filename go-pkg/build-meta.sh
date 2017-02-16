@@ -1,6 +1,6 @@
 set -a
 
-: ${GO_VERSION:=go1.7.3}
+: ${GO_VERSION:=go1.8}
 : ${INSTALL_PREFIX:=/usr/local}
 : ${GOPATH:=/work}
 
