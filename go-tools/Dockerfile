@@ -2,7 +2,7 @@ FROM debian:jessie
 MAINTAINER Andrew McDermott <aim@frobware.com>
 RUN mkdir /gopath
 ENV GOPATH /gopath
-RUN apt-get update && apt-get install -y git mercurial bzr
+RUN apt-get update && apt-get install -y git mercurial bzr checkinstall coreutils
 ADD *.deb /gopath/
 RUN /bin/bash -c 'UPDATE_ALTERNATIVES=1 dpkg -i /gopath/*.deb'
 RUN go env
@@ -33,7 +33,11 @@ RUN go get github.com/fzipp/pythia
 
 # These are already in my go .deb but they are expected to be in
 # GOROOT/bin so remove the duplication.
+RUN mkdir -p /usr/local/bin
 RUN rm -f /gopath/bin/gofmt
+
+RUN checkinstall --install=no -y install -t /usr/local/bin /gopath/bin/*
+RUN ls -l /usr/local/bin
 
 ADD installer /gopath/
 CMD /gopath/installer
