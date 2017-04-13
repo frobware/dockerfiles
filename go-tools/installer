@@ -1,8 +1,8 @@
 #!/bin/sh
 
 if mountpoint -q /target; then
-    #install -m 755 /gopath/bin/* /target
-    cp -v -a /*.deb /gopath/*.deb /target
+    cp -v -a /gopath/bin/* /target
+    cp -v -a /gopath/*.deb /target
 else
     echo "error: /target is not a mountpoint."
     echo "error: re-run this container with -v /some/path/to/a/bin:/target"
