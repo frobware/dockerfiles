@@ -73,6 +73,5 @@ fpm -f --prefix=$GO_VERSION \
     --description "Go ${GO_VERSION}" \
     --iteration $PKG_ITERATION bin src pkg doc test misc
 
-gzip *.tar
-mv *.tar* /
+mv *.tar /
 mv *.deb /
