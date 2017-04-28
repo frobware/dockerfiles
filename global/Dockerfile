@@ -4,8 +4,6 @@ MAINTAINER Andrew McDermott <aim@frobware.com>
 RUN apt-get -y build-dep global
 RUN apt-get -y install checkinstall
 
-RUN mkdir /work /target
-ADD installer /work/
 WORKDIR /work
 
 RUN wget http://tamacom.com/global/global-6.5.6.tar.gz
