@@ -14,7 +14,7 @@ RUN cat /etc/apt/sources.list
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install eatmydata
-RUN DEBIAN_FRONTEND=noninteractive eatmydata apt-get -y install wget build-essential checkinstall ccache
+RUN DEBIAN_FRONTEND=noninteractive eatmydata apt-get -y install wget build-essential checkinstall ccache cmake
 
 RUN mkdir /work /target
 ADD installer /work/
