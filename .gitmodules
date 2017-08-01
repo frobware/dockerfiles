@@ -1,3 +1,6 @@
 [submodule "nsenter"]
 	path = nsenter
 	url = https://github.com/jpetazzo/nsenter
+[submodule "emacs/.emacs.d"]
+	path = emacs/.emacs.d
+	url = https://github.com/frobware/emacs.d

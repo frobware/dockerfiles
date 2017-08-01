@@ -35,7 +35,7 @@ chmod 755 $TOP_DIR/after-remove.bash
 cat $TOP_DIR/after-install.bash
 cat $TOP_DIR/after-remove.bash
 
-for i in deb; do
+for i in rpm; do
     fpm -f --prefix=${INSTALL_PREFIX}/${GO_VERSION} \
 	-s dir \
 	-t $i \
@@ -74,4 +74,4 @@ fpm -f --prefix=$GO_VERSION \
     --iteration $PKG_ITERATION bin src pkg doc test misc
 
 mv *.tar /
-mv *.deb /
+mv *.rpm /
